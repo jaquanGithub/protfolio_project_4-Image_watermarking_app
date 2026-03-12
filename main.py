@@ -1,5 +1,7 @@
 import tkinter as tk
-from tkinter import ttk, filedialog, messagebox
+from tkinter import filedialog, messagebox
+import ttkbootstrap as ttk
+from ttkbootstrap.constants import *
 from PIL import Image, ImageTk, ImageDraw, ImageFont
 import os
 import ctypes
@@ -60,19 +62,19 @@ def save_image():
         messagebox.showinfo("Success", "Image was created successfully.")
 
 ctypes.windll.shcore.SetProcessDpiAwareness(1) # make window look sharp and not blurry
-root = tk.Tk()
+root = ttk.Window()
 root.title("Image watermarking")
 root.geometry("600x600")
-heading_label = ttk.Label(root, text="To imprint a watermark on an image, upload image here.", font=("Arial", 10))
-heading_label.grid(column=0, row=0, columnspan=3)
+heading_label = ttk.Label(root, text="To imprint a watermark on an image, upload image here.", font=("Arial", 10, 'bold'))
+heading_label.pack(padx=10, pady=20)
 upload_btn = ttk.Button(root, text="Browse files", command=imageuploader, width=25)
-upload_btn.grid(column=1, row=1)
+upload_btn.pack(padx=10, pady=15)
 file_name_label = ttk.Label(root, text="", font=("Arial", 10))
-file_name_label.grid(column=1, row=2)
+file_name_label.pack(padx=10)
 img_display_label = ttk.Label(root)
-img_display_label.grid(column=1, row=3)
+img_display_label.pack(padx=10, pady=15)
 add_water_btn = ttk.Button(root, text="Add watermark", command=add_watermark, width=25)
-add_water_btn.grid(column=1, row=4)
+add_water_btn.pack(padx=10, pady=20)
 save_btn = ttk.Button(root, text="Save", command=save_image, width=25)
-save_btn.grid(column=1, row=5)
+save_btn.pack(padx=10)
 root.mainloop()
